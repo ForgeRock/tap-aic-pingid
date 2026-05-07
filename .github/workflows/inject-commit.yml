@@ -3,6 +3,8 @@ name: Inject commit hash into JS files
 on:
   push:
     branches: [main]
+    paths:
+      - '**.js'
   workflow_dispatch:
 
 permissions:
@@ -14,9 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Update JS headers
+        shell: bash
         run: |
           SHORT_SHA="${GITHUB_SHA::7}"
 
@@ -30,21 +34,18 @@ jobs:
               awk -v sha="$SHORT_SHA" '
                 BEGIN { inserted = 0 }
 
-                # Replace existing Commit line anywhere in header
                 /^ \* Commit:/ {
                   print " * Commit: " sha
                   inserted = 1
                   next
                 }
 
-                # If we hit the start of the comment block
                 NR == 1 && $0 == "/**" {
                   print
                   next_line = 1
                   next
                 }
 
-                # Immediately after /** → insert if not already present
                 next_line == 1 {
                   if ($0 !~ /^ \* Commit:/ && inserted == 0) {
                     print " * Commit: " sha
@@ -62,6 +63,7 @@ jobs:
             done
 
       - name: Commit changes
+        shell: bash
         run: |
           if git diff --quiet; then
             echo "No changes"
