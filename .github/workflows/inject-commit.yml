@@ -1,28 +1,48 @@
-- name: Add commit hash to JS headers
-  shell: bash
-  run: |
-    SHORT_SHA="${GITHUB_SHA::7}"
+name: Inject commit hash into JS files
 
-    find . -type f -name "*.js" \
-      -not -path "./node_modules/*" \
-      -not -path "./.git/*" \
-      | while IFS= read -r file; do
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
 
-        # Skip if already has a Commit line near the top
-        if head -n 10 "$file" | grep -q "Commit:"; then
-          continue
-        fi
+jobs:
+  inject-commit:
+    runs-on: ubuntu-latest
 
-        tmpfile="$(mktemp)"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-        awk -v sha="$SHORT_SHA" '
-          NR == 1 && $0 == "/**" {
-            print
-            print " * Commit: " sha
-            next
-          }
-          { print }
-        ' "$file" > "$tmpfile"
+      - name: Add commit hash to JS headers
+        shell: bash
+        run: |
+          SHORT_SHA="${GITHUB_SHA::7}"
 
-        mv "$tmpfile" "$file"
-      done
+          find . -type f -name "*.js" \
+            -not -path "./node_modules/*" \
+            -not -path "./.git/*" \
+            | while IFS= read -r file; do
+
+              if head -n 10 "$file" | grep -q "Commit:"; then
+                continue
+              fi
+
+              tmpfile="$(mktemp)"
+
+              awk -v sha="$SHORT_SHA" '
+                NR == 1 && $0 == "/**" {
+                  print
+                  print " * Commit: " sha
+                  next
+                }
+                { print }
+              ' "$file" > "$tmpfile"
+
+              mv "$tmpfile" "$file"
+            done
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: js-with-commit
+          path: .
