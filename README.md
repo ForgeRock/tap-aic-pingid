@@ -56,6 +56,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-&copy; Copyright 2024 Ping Identity. All Rights Reserved
+&copy; Copyright 2026 Ping Identity. All Rights Reserved
 
 [pingidentity-logo]: https://www.pingidentity.com/content/dam/picr/nav/Ping-Logo-2.svg "Ping Identity Logo"
