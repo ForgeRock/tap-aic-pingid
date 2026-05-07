@@ -1,0 +1,28 @@
+- name: Add commit hash to JS headers
+  shell: bash
+  run: |
+    SHORT_SHA="${GITHUB_SHA::7}"
+
+    find . -type f -name "*.js" \
+      -not -path "./node_modules/*" \
+      -not -path "./.git/*" \
+      | while IFS= read -r file; do
+
+        # Skip if already has a Commit line near the top
+        if head -n 10 "$file" | grep -q "Commit:"; then
+          continue
+        fi
+
+        tmpfile="$(mktemp)"
+
+        awk -v sha="$SHORT_SHA" '
+          NR == 1 && $0 == "/**" {
+            print
+            print " * Commit: " sha
+            next
+          }
+          { print }
+        ' "$file" > "$tmpfile"
+
+        mv "$tmpfile" "$file"
+      done
