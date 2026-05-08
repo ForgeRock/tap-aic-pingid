@@ -48,7 +48,7 @@ It also uses **`PingID Inner Registration`** to create/register the user in Ping
 
 The uploaded scripts reference these ESV keys:
 
-| Script reference | Create this ESV name | Type | Value |
+| Create this ESV name | Type | Value |
 |---:|---|---|
 |`esv-envid` | Variable | PingOne Environment ID |
 |`esv-clientid` | Variable | Worker Client ID |
