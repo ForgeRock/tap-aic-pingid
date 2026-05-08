@@ -34,6 +34,98 @@ https://docs.pingidentity.com/pingoneaic/integrations/pingone-set-up-workers.htm
 > Outcome names are case-sensitive and must match the script exactly.
 
 
+## PingID Authenticate Journey Setup Steps
+
+### Goal of the journey
+
+The **`PingID Authenticate`** journey signs a user in with platform username/password, verifies the user in the identity store, finds or creates the matching PingOne user, checks for registered PingOne MFA devices, prompts the user to select a device when needed, starts a PingOne device authentication, displays the number-matching value, and polls until push authentication completes.
+
+It also uses **`PingID Inner Registration`** to create/register the user in PingOne and generate a PingID/PingOne MFA pairing QR code when the user does not yet exist in PingOne.
+
+---
+
+### 1. Create the required ESVs
+
+The uploaded scripts reference these ESV keys:
+
+| Script reference | Create this ESV name | Type | Value |
+|---:|---|---|
+|`esv-envid` | Variable | PingOne Environment ID |
+|`esv-clientid` | Variable | Worker Client ID |
+|  `esv-identifier` | Secret | Worker Client Secret |
+|  `esv-policyid` | Variable | PingOne MFA policy ID |
+|  `esv-applicationid` | Variable | PingOne application ID |
+
+After creating or changing ESVs, apply the required tenant update/restart process so the values are loaded where needed.
+
+---
+
+### 2. Configure the PingOne Worker Service in Advanced Identity Cloud
+
+Create a PingOne Worker Service secondary configuration that matches the exported node configuration.
+
+1. Go to **Native Consoles → Access Management → Services**.
+2. Add or open **PingOne Worker Service**.
+3. Add a secondary configuration.
+4. Name the secondary configuration exactly:
+
+```text
+pingone-worker
+```
+
+The journey nodes in the export use this value:
+
+```text
+pingOneWorker: pingone-worker
+```
+
+5. Configure the service with the PingOne worker credentials.
+6. Set the PingOne API and auth URLs for your region.
+
+The uploaded scripts currently hard-code North America endpoints:
+
+```text
+https://auth.pingone.com
+https://api.pingone.com/v1
+```
+
+For other PingOne regions, update the scripts and worker service URLs accordingly.
+
+7. Save and test the worker connection.
+
+---
+
+### 3. Import or create the scripts
+
+The export contains nine scripted decision node scripts.
+
+When manually copying from the JSON, note that each `script` value in the export is JSON-encoded. Use the decoded JavaScript source, not the outer quoted/escaped string.
+
+Create these scripts as **Authentication Tree Decision Node** scripts, JavaScript, evaluator version 2.0 where available.
+
+#### Main journey scripts
+
+| Script name in export | Node using it | Outcomes |
+|---|---|---|
+| `getAccessToken` | `Get Worker Access Token` | `true`, `false` |
+| `Read MFA Devices` | `Read MFA Devices` | `multipleDevices`, `noDevices`, `error`, `singleDevice` |
+| `Select Device` | `Select Device` | `selected`, `error` |
+| `Initialize Device Authentication` | `Initialize Device Authentication` | `Success`, `Failure` |
+| `Display Number` | `Display Number` | `true` |
+| `Read Device Authentication` | `Read Device Authentication` | `completed`, `polling`, `error` |
+
+#### Inner registration scripts
+
+| Script name in export | Node using it | Outcomes |
+|---|---|---|
+| `Update User MFA Enabled` | `Update User MFA Enabled` | `success`, `error` |
+| `Create MFA Pairing Key` | `Create MFA Pairing Key` | `true`, `false` |
+| `Check Pairing Status` | `Check Pairing Status` | `true` |
+
+---
+
+
+
 <!-- SUPPORT -->
 ## Support
 
