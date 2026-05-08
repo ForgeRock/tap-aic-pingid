@@ -1,0 +1,909 @@
+{
+  "meta": {
+    "origin": "",
+    "exportedBy": "",
+    "exportDate": "2026-05-08T17:03:12.239Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.1",
+    "treesSelectedForExport": [
+      "PingID Authenticate"
+    ],
+    "innerTreesIncluded": [
+      "PingID Inner Registration"
+    ]
+  },
+  "trees": {
+    "PingID Inner Registration": {
+      "tree": {
+        "_id": "PingID Inner Registration",
+        "_rev": "87362112",
+        "identityResource": "managed/alpha_user",
+        "entryNodeId": "4b66ac43-d869-4687-845c-c89bed804bfe",
+        "innerTreeOnly": false,
+        "noSession": false,
+        "mustRun": false,
+        "enabled": true,
+        "transactionalOnly": false,
+        "uiConfig": {
+          "annotations": "{\"forNodes\":{},\"structural\":[]}",
+          "categories": "[]"
+        },
+        "nodes": {
+          "18c84aa6-7449-461d-9f10-c3f7002d4f56": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "197df8bf-af65-435c-95be-5549fb377d67"
+            },
+            "displayName": "PingOne Create User",
+            "nodeType": "PingOneCreateUserNode",
+            "version": "1.0",
+            "x": 222,
+            "y": 157.015625
+          },
+          "197df8bf-af65-435c-95be-5549fb377d67": {
+            "connections": {
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "success": "2aa9c2cc-0ef4-4ed0-a7ab-4a39a580669c"
+            },
+            "displayName": "Update User MFA Enabled",
+            "nodeType": "ScriptedDecisionNode",
+            "version": "1.0",
+            "x": 638,
+            "y": 409.015625
+          },
+          "2aa9c2cc-0ef4-4ed0-a7ab-4a39a580669c": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "2c220ef4-80f1-4ffb-bb9b-6d4446b6eb11"
+            },
+            "displayName": "Create MFA Pairing Key",
+            "nodeType": "ScriptedDecisionNode",
+            "version": "1.0",
+            "x": 445,
+            "y": 43.015625
+          },
+          "2c220ef4-80f1-4ffb-bb9b-6d4446b6eb11": {
+            "connections": {
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Check Pairing Status",
+            "nodeType": "ScriptedDecisionNode",
+            "version": "1.0",
+            "x": 831,
+            "y": 54.015625
+          },
+          "4b66ac43-d869-4687-845c-c89bed804bfe": {
+            "connections": {
+              "false": "18c84aa6-7449-461d-9f10-c3f7002d4f56",
+              "true": "2aa9c2cc-0ef4-4ed0-a7ab-4a39a580669c"
+            },
+            "displayName": "PingOne Identity Match",
+            "nodeType": "PingOneIdentityMatchNode",
+            "version": "1.0",
+            "x": 98,
+            "y": 5.015625
+          }
+        },
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1080,
+            "y": 46
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 701,
+            "y": 484
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        }
+      },
+      "nodes": {
+        "18c84aa6-7449-461d-9f10-c3f7002d4f56": {
+          "_id": "18c84aa6-7449-461d-9f10-c3f7002d4f56",
+          "_rev": "645522975",
+          "captureFailure": false,
+          "amIdentityAttribute": "uid",
+          "pingOneWorker": "pingone-worker",
+          "anonymizedUser": true,
+          "_type": {
+            "_id": "PingOneCreateUserNode",
+            "name": "PingOne Create User",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "197df8bf-af65-435c-95be-5549fb377d67": {
+          "_id": "197df8bf-af65-435c-95be-5549fb377d67",
+          "_rev": "-957420312",
+          "script": "98d0b311-eb0d-40ca-9bb9-ec2b5b64c567",
+          "outcomes": [
+            "success",
+            "error"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "success",
+              "displayName": "success"
+            },
+            {
+              "id": "error",
+              "displayName": "error"
+            }
+          ]
+        },
+        "2aa9c2cc-0ef4-4ed0-a7ab-4a39a580669c": {
+          "_id": "2aa9c2cc-0ef4-4ed0-a7ab-4a39a580669c",
+          "_rev": "1933063183",
+          "script": "ebc5c694-7be9-4e53-ab0a-738ad9bbc552",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "2c220ef4-80f1-4ffb-bb9b-6d4446b6eb11": {
+          "_id": "2c220ef4-80f1-4ffb-bb9b-6d4446b6eb11",
+          "_rev": "164273587",
+          "script": "88733c23-ccad-4b37-a277-8203d6cb1d42",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "4b66ac43-d869-4687-845c-c89bed804bfe": {
+          "_id": "4b66ac43-d869-4687-845c-c89bed804bfe",
+          "_rev": "-1346271819",
+          "captureFailure": false,
+          "pingIdentityAttribute": "username",
+          "amIdentityAttribute": "uid",
+          "pingOneWorker": "pingone-worker",
+          "_type": {
+            "_id": "PingOneIdentityMatchNode",
+            "name": "PingOne Identity Match",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        }
+      },
+      "innerNodes": {},
+      "scripts": {
+        "98d0b311-eb0d-40ca-9bb9-ec2b5b64c567": {
+          "_id": "98d0b311-eb0d-40ca-9bb9-ec2b5b64c567",
+          "name": "Update User MFA Enabled",
+          "description": null,
+          "script": "\"/**\\n * Created by the Ping Identity Technology Alliance Partner (TAP) team\\n *\\n * For support, contact Ping Identity Support\\n * or email: tap-global@pingidentity.com\\n *\\n * Version: 1.5\\n */\\n\\ntry {\\n    var accessToken = nodeState.get(\\\"pingAccessToken\\\");\\n    var userId = nodeState.get(\\\"pingOneUserId\\\");\\n    var envId = systemEnv.getProperty(\\\"esv.envid\\\");\\n\\n    if (!accessToken || !userId || !envId) {\\n        logger.error(\\\"Missing required values. accessToken=\\\" + !!accessToken +\\n                     \\\", userId=\\\" + !!userId +\\n                     \\\", envId=\\\" + !!envId);\\n        action.goTo(\\\"error\\\");\\n    } else {\\n        var requestUrl = \\\"https://api.pingone.com/v1/environments/\\\"\\n            + encodeURIComponent(envId)\\n            + \\\"/users/\\\"\\n            + encodeURIComponent(userId)\\n            + \\\"/mfaEnabled\\\";\\n\\n        var options = {\\n            method: \\\"PUT\\\",\\n            headers: {\\n                \\\"Content-Type\\\": \\\"application/json\\\",\\n            },\\n            token: accessToken,\\n            body: {\\n                mfaEnabled: true\\n            }\\n        };\\n\\n        var response = httpClient.send(requestUrl, options).get();\\n\\n        logger.info(\\\"PingOne MFA enable response status: {}\\\", response.status);\\n\\n        if (response.status >= 200 && response.status < 300) {\\n            nodeState.putShared(\\\"mfaEnabledResult\\\", \\\"success\\\");\\n            action.goTo(\\\"success\\\");\\n        } else {\\n            var responseBody = \\\"\\\";\\n            try {\\n                responseBody = response.text();\\n            } catch (ignore) {}\\n\\n            logger.error(\\\"PingOne MFA enable failed. Status: \\\" +\\n                         response.status + \\\", Body: \\\" + responseBody);\\n\\n            nodeState.putShared(\\\"mfaEnabledResult\\\", \\\"failed\\\");\\n            nodeState.putShared(\\\"mfaEnabledStatus\\\", String(response.status));\\n            nodeState.putShared(\\\"mfaEnabledBody\\\", responseBody);\\n\\n            action.goTo(\\\"error\\\");\\n        }\\n    }\\n} catch (e) {\\n    logger.error(\\\"Exception enabling MFA: {}\\\", String(e));\\n    nodeState.putShared(\\\"mfaEnabledResult\\\", \\\"exception\\\");\\n    nodeState.putShared(\\\"mfaEnabledException\\\", String(e));\\n    action.goTo(\\\"error\\\");\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "creationDate": 1777667643867,
+          "lastModifiedBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "lastModifiedDate": 1778185341890,
+          "evaluatorVersion": "2.0"
+        },
+        "ebc5c694-7be9-4e53-ab0a-738ad9bbc552": {
+          "_id": "ebc5c694-7be9-4e53-ab0a-738ad9bbc552",
+          "name": "Create MFA Pairing Key",
+          "description": null,
+          "script": "\"/**\\n * Created by the Ping Identity Technology Alliance Partner (TAP) team\\n *\\n * For support, contact Ping Identity Support\\n * or email: tap-global@pingidentity.com\\n *\\n * Version: 1.5\\n */\\n\\nvar accessToken = nodeState.get(\\\"pingAccessToken\\\");\\nvar userId = nodeState.get(\\\"pingOneUserId\\\");\\nvar envId = systemEnv.getProperty(\\\"esv.envid\\\");\\nvar policyid = systemEnv.getProperty(\\\"esv.policyid\\\");\\nvar applicationid = systemEnv.getProperty(\\\"esv.applicationid\\\");\\n\\nvar url = `https://api.pingone.com/v1/environments/${envId}/users/${userId}/pairingKeys`;\\n\\nvar requestOptions = {\\n  method: \\\"POST\\\",\\n  headers: {\\n    \\\"Content-Type\\\": \\\"application/json\\\"\\n  },\\n  token: accessToken,\\n  body: {\\n    applications: [\\n      {\\n        id: applicationid\\n      }\\n    ],\\n    policy: {\\n      id: policyid\\n    }\\n  }\\n};\\n\\ntry {\\n  var response = httpClient.send(url, requestOptions).get();\\n\\n  if (response.ok) {\\n    var responseJson = response.json();\\n\\n    // Store the returned pairing code in shared state.\\n    nodeState.putShared(\\\"pairingKeyCode\\\", responseJson.code);\\n      nodeState.putShared(\\\"pairingKeyId\\\", responseJson.id);\\n      nodeState.putShared(\\\"pairingKeyUri\\\", responseJson.uri);\\n\\n\\n    action.goTo(\\\"true\\\");\\n  } else {\\n    logger.error(\\\"Pairing key request failed: \\\" + response.status + \\\" \\\" + response.text());\\n    nodeState.putShared(\\\"pairingKeyError\\\", response.text());\\n    action.goTo(\\\"false\\\");\\n  }\\n} catch (e) {\\n  logger.error(\\\"Pairing key request exception: \\\" + e);\\n  nodeState.putShared(\\\"pairingKeyError\\\", String(e));\\n  action.goTo(\\\"false\\\");\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "creationDate": 1777910321085,
+          "lastModifiedBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "lastModifiedDate": 1778185362455,
+          "evaluatorVersion": "2.0"
+        },
+        "88733c23-ccad-4b37-a277-8203d6cb1d42": {
+          "_id": "88733c23-ccad-4b37-a277-8203d6cb1d42",
+          "name": "Check Pairing Status",
+          "description": null,
+          "script": "\"/**\\n * Created by the Ping Identity Technology Alliance Partner (TAP) team\\n *\\n * For support, contact Ping Identity Support\\n * or email: tap-global@pingidentity.com\\n *\\n * Version: 1.5\\n */\\n\\nvar accessToken = nodeState.get(\\\"pingAccessToken\\\");\\nvar userId = nodeState.get(\\\"pingOneUserId\\\");\\nvar envId = systemEnv.getProperty(\\\"esv.envid\\\");\\nvar pairingCode = nodeState.get(\\\"pairingKeyCode\\\");\\nvar pairingKeyId = nodeState.get(\\\"pairingKeyId\\\");\\n\\n\\nvar requestOptions = {\\n  method: \\\"GET\\\",\\n  headers: {\\n    \\\"Content-Type\\\": \\\"application/json\\\"\\n  },\\n  token: accessToken\\n};\\n\\n\\n\\nvar pairingKey = nodeState.get(\\\"pairingKeyUri\\\"); // <-- use your actual sharedState key\\n\\nfunction createScript(valueToEncode) {\\n  return `\\n(function () {\\n  const valueToEncode = ${JSON.stringify(String(valueToEncode))};\\n\\n  function loadScript(src, callback) {\\n    const s = document.createElement(\\\"script\\\");\\n    s.src = src;\\n    s.async = true;\\n    s.onload = callback;\\n    document.head.appendChild(s);\\n  }\\n\\n  loadScript(\\\"https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js\\\", function () {\\n    console.log(\\\"QRCode lib loaded\\\");\\n\\n    const container = document.getElementById(\\\"wrapper\\\");\\n\\n    if (!container) {\\n      console.error(\\\"callbacksPanel not found\\\");\\n      return;\\n    }\\n\\n    const qrDiv = document.createElement(\\\"div\\\");\\n    qrDiv.id = \\\"pairing-qr-code\\\";\\n    qrDiv.style.textAlign = \\\"center\\\";\\n    qrDiv.style.width = \\\"100%\\\";\\n    qrDiv.style.display = \\\"flex\\\";\\n    qrDiv.style.justifyContent = \\\"center\\\";\\n    qrDiv.style.alignItems = \\\"center\\\";\\n    qrDiv.style.margin = \\\"16px 0\\\";\\n\\n    container.prepend(qrDiv);\\n\\n    new QRCode(qrDiv, {\\n      text: valueToEncode\\n    });\\n  });\\n})();\\n`;\\n}\\n\\n\\nvar url = `https://api.pingone.com/v1/environments/${envId}/users/${userId}/pairingKeys/${pairingKeyId}`;\\n\\nif (callbacks.isEmpty()) {\\n    logger.info(\\\"Displaying pairing code to user: \\\" + pairingCode);\\n    callbacksBuilder.scriptTextOutputCallback(createScript(pairingKey));\\n    callbacksBuilder.textOutputCallback(0, \\\"Pairing Code: \\\" + pairingCode);\\n    callbacksBuilder.confirmationCallback(0, [\\\"Paired\\\"], 0);\\n    \\n} else {\\n    logger.error(\\\"User has submitted pairing code, checking status...\\\");\\n    var response = httpClient.send(url, requestOptions).get();\\n    if (response.status === 200) {\\n        try {\\n            var responseJson = JSON.parse(response.json());\\n        } catch (e) {\\n            logger.error(\\\"Failed to parse JSON: \\\" + e);\\n        }\\n        if (responseJson.status === \\\"CLAIMED\\\") {\\n            logger.info(\\\"Device successfully paired.\\\");\\n            action.goTo(\\\"true\\\");\\n        }\\n    }\\n}\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "creationDate": 1777910870301,
+          "lastModifiedBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "lastModifiedDate": 1778185385477,
+          "evaluatorVersion": "2.0"
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    },
+    "PingID Authenticate": {
+      "tree": {
+        "_id": "PingID Authenticate",
+        "_rev": "657595644",
+        "identityResource": "managed/alpha_user",
+        "entryNodeId": "93e5fdec-4a2c-483d-a6c7-cb46ad7e07ab",
+        "innerTreeOnly": false,
+        "noSession": false,
+        "mustRun": false,
+        "enabled": true,
+        "transactionalOnly": false,
+        "uiConfig": {
+          "annotations": "{\"forNodes\":{},\"structural\":[]}",
+          "categories": "[]"
+        },
+        "nodes": {
+          "337a3928-f058-4766-a887-0cd4f88a53fd": {
+            "x": 2591,
+            "y": 81,
+            "connections": {
+              "completed": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "polling": "41c5238e-53f2-43b7-a720-af56758312fb"
+            },
+            "nodeType": "ScriptedDecisionNode",
+            "displayName": "Read Device Authentication",
+            "version": "1.0"
+          },
+          "41c5238e-53f2-43b7-a720-af56758312fb": {
+            "x": 2603,
+            "y": 308.8333333333333,
+            "connections": {
+              "DONE": "337a3928-f058-4766-a887-0cd4f88a53fd"
+            },
+            "nodeType": "PollingWaitNode",
+            "displayName": "Polling Wait Node",
+            "version": "1.0"
+          },
+          "8adff10c-470b-4dec-a0f4-0b3560853841": {
+            "x": 1452,
+            "y": 54,
+            "connections": {
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "multipleDevices": "9e736b20-880e-4e15-9c91-7cdda2b6897e",
+              "noDevices": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "singleDevice": "c7ac1a39-0f21-4569-9255-31a24d78c908"
+            },
+            "nodeType": "ScriptedDecisionNode",
+            "displayName": "Read  MFA Devices",
+            "version": "1.0"
+          },
+          "93e5fdec-4a2c-483d-a6c7-cb46ad7e07ab": {
+            "x": 210,
+            "y": 161,
+            "connections": {
+              "outcome": "c1dd1491-ab07-45d1-9fbf-567c0653e7cd"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Page Node",
+            "version": "1.0"
+          },
+          "9e736b20-880e-4e15-9c91-7cdda2b6897e": {
+            "x": 1757,
+            "y": 74.5,
+            "connections": {
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "selected": "c7ac1a39-0f21-4569-9255-31a24d78c908"
+            },
+            "nodeType": "ScriptedDecisionNode",
+            "displayName": "Select Device",
+            "version": "1.0"
+          },
+          "9ea9d5bf-1caf-4c03-901d-c1e0391b2fcc": {
+            "x": 1129,
+            "y": 156.5,
+            "connections": {
+              "false": "b5c6ff5e-3b9b-45c7-ac23-7acb79fea290",
+              "true": "8adff10c-470b-4dec-a0f4-0b3560853841"
+            },
+            "nodeType": "PingOneIdentityMatchNode",
+            "displayName": "PingOne Identity Match",
+            "version": "1.0"
+          },
+          "a1045915-0132-4c4d-bff5-21db1a224c36": {
+            "x": 2339,
+            "y": 47,
+            "connections": {
+              "true": "337a3928-f058-4766-a887-0cd4f88a53fd"
+            },
+            "nodeType": "ScriptedDecisionNode",
+            "displayName": "Display Number",
+            "version": "1.0"
+          },
+          "a3c79a11-c6fc-4cf8-aa29-6663d6d2b323": {
+            "x": 816,
+            "y": 154.5,
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "9ea9d5bf-1caf-4c03-901d-c1e0391b2fcc"
+            },
+            "nodeType": "ScriptedDecisionNode",
+            "displayName": "Get Worker Access Token",
+            "version": "1.0"
+          },
+          "b5c6ff5e-3b9b-45c7-ac23-7acb79fea290": {
+            "x": 1436,
+            "y": 396,
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "c7ac1a39-0f21-4569-9255-31a24d78c908"
+            },
+            "nodeType": "InnerTreeEvaluatorNode",
+            "displayName": "PingID Inner Registration",
+            "version": "1.0"
+          },
+          "c1dd1491-ab07-45d1-9fbf-567c0653e7cd": {
+            "x": 509,
+            "y": 168.5,
+            "connections": {
+              "FALSE": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "TRUE": "a3c79a11-c6fc-4cf8-aa29-6663d6d2b323"
+            },
+            "nodeType": "IdentityStoreDecisionNode",
+            "displayName": "Identity Store Decision",
+            "version": "1.0"
+          },
+          "c7ac1a39-0f21-4569-9255-31a24d78c908": {
+            "x": 2023,
+            "y": 180.5,
+            "connections": {
+              "Failure": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "Success": "a1045915-0132-4c4d-bff5-21db1a224c36"
+            },
+            "nodeType": "ScriptedDecisionNode",
+            "displayName": "Initialize Device Authentication",
+            "version": "1.0"
+          }
+        },
+        "staticNodes": {
+          "startNode": {
+            "x": 70,
+            "y": 235.5
+          },
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 2909,
+            "y": 82.5
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 2927,
+            "y": 795.25
+          }
+        }
+      },
+      "nodes": {
+        "337a3928-f058-4766-a887-0cd4f88a53fd": {
+          "_id": "337a3928-f058-4766-a887-0cd4f88a53fd",
+          "_rev": "-745696934",
+          "script": "9caca129-45ef-4337-98a6-d47c90148c23",
+          "outcomes": [
+            "completed",
+            "polling",
+            "error"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "completed",
+              "displayName": "completed"
+            },
+            {
+              "id": "polling",
+              "displayName": "polling"
+            },
+            {
+              "id": "error",
+              "displayName": "error"
+            }
+          ]
+        },
+        "41c5238e-53f2-43b7-a720-af56758312fb": {
+          "_id": "41c5238e-53f2-43b7-a720-af56758312fb",
+          "_rev": "-1511016306",
+          "spamDetectionTolerance": 3,
+          "spamDetectionEnabled": false,
+          "exitMessage": {},
+          "waitingMessage": {},
+          "secondsToWait": 8,
+          "exitable": false,
+          "_type": {
+            "_id": "PollingWaitNode",
+            "name": "Polling Wait Node",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "DONE",
+              "displayName": "Done"
+            }
+          ]
+        },
+        "8adff10c-470b-4dec-a0f4-0b3560853841": {
+          "_id": "8adff10c-470b-4dec-a0f4-0b3560853841",
+          "_rev": "-2144260363",
+          "script": "ea77b650-80e5-497b-a461-cfe5eeccc555",
+          "outcomes": [
+            "multipleDevices",
+            "noDevices",
+            "error",
+            "singleDevice"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "multipleDevices",
+              "displayName": "multipleDevices"
+            },
+            {
+              "id": "noDevices",
+              "displayName": "noDevices"
+            },
+            {
+              "id": "error",
+              "displayName": "error"
+            },
+            {
+              "id": "singleDevice",
+              "displayName": "singleDevice"
+            }
+          ]
+        },
+        "93e5fdec-4a2c-483d-a6c7-cb46ad7e07ab": {
+          "_id": "93e5fdec-4a2c-483d-a6c7-cb46ad7e07ab",
+          "_rev": "-321142300",
+          "nodes": [
+            {
+              "_id": "1780303e-05ae-4ed9-acdc-1bb4bd9d7b2f",
+              "nodeType": "ValidatedUsernameNode",
+              "nodeVersion": "1.0",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "61a6754a-7ce3-4725-a737-0b2f34261cba",
+              "nodeType": "ValidatedPasswordNode",
+              "nodeVersion": "1.0",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "9e736b20-880e-4e15-9c91-7cdda2b6897e": {
+          "_id": "9e736b20-880e-4e15-9c91-7cdda2b6897e",
+          "_rev": "-175558775",
+          "script": "d69d93b9-dadf-4182-9627-cb1400ab8dd1",
+          "outcomes": [
+            "selected",
+            "error"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "selected",
+              "displayName": "selected"
+            },
+            {
+              "id": "error",
+              "displayName": "error"
+            }
+          ]
+        },
+        "9ea9d5bf-1caf-4c03-901d-c1e0391b2fcc": {
+          "_id": "9ea9d5bf-1caf-4c03-901d-c1e0391b2fcc",
+          "_rev": "1140056350",
+          "captureFailure": false,
+          "pingIdentityAttribute": "username",
+          "amIdentityAttribute": "uid",
+          "pingOneWorker": "pingone-worker",
+          "_type": {
+            "_id": "PingOneIdentityMatchNode",
+            "name": "PingOne Identity Match",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "a1045915-0132-4c4d-bff5-21db1a224c36": {
+          "_id": "a1045915-0132-4c4d-bff5-21db1a224c36",
+          "_rev": "-253021386",
+          "script": "293ec003-a57c-4220-b2f8-13dc9e7f2673",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "a3c79a11-c6fc-4cf8-aa29-6663d6d2b323": {
+          "_id": "a3c79a11-c6fc-4cf8-aa29-6663d6d2b323",
+          "_rev": "-1384508079",
+          "script": "cce3770b-6ad8-4c7b-8460-5250af41a8a2",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "b5c6ff5e-3b9b-45c7-ac23-7acb79fea290": {
+          "_id": "b5c6ff5e-3b9b-45c7-ac23-7acb79fea290",
+          "_rev": "-256265535",
+          "displayErrorOutcome": false,
+          "tree": "PingID Inner Registration",
+          "_type": {
+            "_id": "InnerTreeEvaluatorNode",
+            "name": "Inner Tree Evaluator",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "c1dd1491-ab07-45d1-9fbf-567c0653e7cd": {
+          "_id": "c1dd1491-ab07-45d1-9fbf-567c0653e7cd",
+          "_rev": "1949632128",
+          "useUniversalIdForUsername": false,
+          "minimumPasswordLength": 8,
+          "mixedCaseForPasswordChangeMessages": false,
+          "_type": {
+            "_id": "IdentityStoreDecisionNode",
+            "name": "Identity Store Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "TRUE",
+              "displayName": "True"
+            },
+            {
+              "id": "FALSE",
+              "displayName": "False"
+            },
+            {
+              "id": "LOCKED",
+              "displayName": "Locked"
+            },
+            {
+              "id": "CANCELLED",
+              "displayName": "Cancelled"
+            },
+            {
+              "id": "EXPIRED",
+              "displayName": "Expired"
+            }
+          ]
+        },
+        "c7ac1a39-0f21-4569-9255-31a24d78c908": {
+          "_id": "c7ac1a39-0f21-4569-9255-31a24d78c908",
+          "_rev": "692558675",
+          "script": "704ba7b3-eeaa-4396-a4c6-da5235b6f3c2",
+          "outcomes": [
+            "Success",
+            "Failure"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "Success",
+              "displayName": "Success"
+            },
+            {
+              "id": "Failure",
+              "displayName": "Failure"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "1780303e-05ae-4ed9-acdc-1bb4bd9d7b2f": {
+          "_id": "1780303e-05ae-4ed9-acdc-1bb4bd9d7b2f",
+          "_rev": "2057389534",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "autocompleteValues": [],
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "61a6754a-7ce3-4725-a737-0b2f34261cba": {
+          "_id": "61a6754a-7ce3-4725-a737-0b2f34261cba",
+          "_rev": "-1426777936",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "9caca129-45ef-4337-98a6-d47c90148c23": {
+          "_id": "9caca129-45ef-4337-98a6-d47c90148c23",
+          "name": "Read Device Authentication",
+          "description": null,
+          "script": "\"/**\\n * Created by the Ping Identity Technology Alliance Partner (TAP) team\\n *\\n * For support, contact Ping Identity Support\\n * or email: tap-global@pingidentity.com\\n *\\n * Version: 1.5\\n */\\n\\nvar deviceAuthId = nodeState.get(\\\"deviceAuthId\\\");\\nvar accessToken = nodeState.get(\\\"pingAccessToken\\\");\\nvar envId = systemEnv.getProperty(\\\"esv.envid\\\");\\n\\nif (!deviceAuthId || !accessToken || !envId) {\\n    logger.error(\\\"Missing required state. envId/deviceAuthId/accessToken must be present.\\\");\\n    nodeState.putShared(\\\"deviceAuthStatusError\\\", \\\"Missing envId, deviceAuthId, or accessToken\\\");\\n    action.goTo(\\\"error\\\");\\n} else {\\n    var requestUrl = \\\"https://auth.pingone.com/\\\" + envId + \\\"/deviceAuthentications/\\\" + deviceAuthId;\\n\\n    var requestOptions = {\\n        method: \\\"GET\\\",\\n        headers: {\\n            \\\"Content-Type\\\": \\\"application/json\\\",\\n        },\\n        token: accessToken\\n    };\\n\\n    try {\\n        var response = httpClient.send(requestUrl, requestOptions).get();\\n\\n        if (!response) {\\n            logger.error(\\\"No response returned from device authentication API\\\");\\n            nodeState.putShared(\\\"deviceAuthStatusError\\\", \\\"No response returned from API\\\");\\n            action.goTo(\\\"error\\\");\\n        } else if (!response.ok) {\\n            var errorBody = response.text();\\n            logger.error(\\\"Device authentication API call failed. HTTP status: \\\" + response.status + \\\", body: \\\" + errorBody);\\n            nodeState.putShared(\\\"deviceAuthHttpStatus\\\", String(response.status));\\n            nodeState.putShared(\\\"deviceAuthStatusError\\\", errorBody);\\n            action.goTo(\\\"error\\\");\\n        } else {\\n            var body = response.json();\\n            var status = body && body.status ? String(body.status) : null;\\n\\n\\n            nodeState.putShared(\\\"deviceAuthApiResponse\\\", JSON.stringify(body));\\n            nodeState.putShared(\\\"deviceAuthStatus\\\", status);\\n\\n            if (status === \\\"PUSH_CONFIRMATION_REQUIRED\\\") {\\n                action.goTo(\\\"polling\\\");\\n            } else if (status === \\\"COMPLETED\\\") {\\n                action.goTo(\\\"completed\\\");\\n            } else {\\n                logger.error(\\\"Unexpected device authentication status: \\\" + status);\\n                nodeState.putShared(\\\"deviceAuthStatusError\\\", \\\"Unexpected status: \\\" + status);\\n                action.goTo(\\\"error\\\");\\n            }\\n        }\\n    } catch (e) {\\n        logger.error(\\\"Exception while calling device authentication API: \\\" + e);\\n        nodeState.putShared(\\\"deviceAuthStatusError\\\", String(e));\\n        action.goTo(\\\"error\\\");\\n    }\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "creationDate": 1777599923421,
+          "lastModifiedBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "lastModifiedDate": 1778185302418,
+          "evaluatorVersion": "2.0"
+        },
+        "ea77b650-80e5-497b-a461-cfe5eeccc555": {
+          "_id": "ea77b650-80e5-497b-a461-cfe5eeccc555",
+          "name": "Read MFA Devices",
+          "description": null,
+          "script": "\"/**\\n * Created by the Ping Identity Technology Alliance Partner (TAP) team\\n *\\n * For support, contact Ping Identity Support\\n * or email: tap-global@pingidentity.com\\n *\\n * Version: 1.5\\n */\\n\\ntry {\\n  var environmentId = systemEnv.getProperty(\\\"esv.envid\\\");\\n  var accessToken = nodeState.get(\\\"pingAccessToken\\\");\\n  var userId = nodeState.get(\\\"pingOneUserId\\\");\\n\\n  var url =\\n    \\\"https://api.pingone.com/v1/environments/\\\" +\\n    environmentId +\\n    \\\"/users/\\\" +\\n    userId +\\n    \\\"/devices\\\";\\n\\n  var requestOptions = {\\n    method: \\\"GET\\\",\\n    headers: {\\n      \\\"Accept\\\": \\\"application/json\\\"\\n    },\\n    token: accessToken\\n  };\\n\\n  var response = httpClient.send(url, requestOptions).get();\\n\\n  if (response.status !== 200) {\\n    logger.error(\\\"PingOne Devices API failed. Status: \\\" + response.status);\\n    action.goTo(\\\"error\\\");\\n  } else {\\n    var json = response.json();\\n    var count = json.count || 0;\\n\\n    nodeState.putShared(\\\"devicesResponse\\\", JSON.stringify(json));\\n\\n    if (count === 0) {\\n      action.goTo(\\\"noDevices\\\");\\n    } else if (count === 1) {\\n      var device = json._embedded.devices[0];\\n\\n      nodeState.putShared(\\\"selectedDeviceId\\\", device.id);\\n      nodeState.putShared(\\\"selectedDeviceNickname\\\", device.nickname || device.id);\\n\\n      action.goTo(\\\"singleDevice\\\");\\n    } else {\\n      action.goTo(\\\"multipleDevices\\\");\\n    }\\n  }\\n} catch (e) {\\n  logger.error(\\\"Exception calling PingOne Devices API: \\\" + e);\\n  action.goTo(\\\"error\\\");\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "creationDate": 1778166351817,
+          "lastModifiedBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "lastModifiedDate": 1778185193627,
+          "evaluatorVersion": "2.0"
+        },
+        "d69d93b9-dadf-4182-9627-cb1400ab8dd1": {
+          "_id": "d69d93b9-dadf-4182-9627-cb1400ab8dd1",
+          "name": "Select Device",
+          "description": null,
+          "script": "\"/**\\n * Created by the Ping Identity Technology Alliance Partner (TAP) team\\n *\\n * For support, contact Ping Identity Support\\n * or email: tap-global@pingidentity.com\\n *\\n * Version: 1.5\\n */\\n\\ntry {\\n  var devicesJson = nodeState.get(\\\"devicesResponse\\\");\\n  var devicesResponse = JSON.parse(devicesJson);\\n\\n  var devices = devicesResponse._embedded.devices;\\n\\n  var choices = [];\\n  var deviceIds = [];\\n\\n  for (var i = 0; i < devices.length; i++) {\\n    var d = devices[i];\\n\\n    var label = d.nickname ||\\n            (d.model && d.model.marketingName) ||\\n            d.id;\\n\\n    if (d.os && d.os.type) {\\n      label += \\\" - \\\" + d.os.type;\\n    }\\n\\n    choices.push(label);\\n    deviceIds.push(d.id);\\n  }\\n\\n  if (callbacks.isEmpty()) {\\n    callbacksBuilder.choiceCallback(\\n      \\\"Select the device you want to use\\\",\\n      choices,\\n      0,\\n      false\\n    );\\n  } else {\\n    var selectedIndex = callbacks.getChoiceCallbacks().get(0)[0];\\n\\n    var selectedDeviceId = deviceIds[selectedIndex];\\n    var selectedDeviceLabel = choices[selectedIndex];\\n\\n    nodeState.putShared(\\\"selectedDeviceId\\\", selectedDeviceId);\\n    nodeState.putShared(\\\"selectedDeviceLabel\\\", selectedDeviceLabel);\\n\\n    action.goTo(\\\"selected\\\");\\n  }\\n\\n} catch (e) {\\n  logger.error(\\\"Error rendering device choices: \\\" + e);\\n  action.goTo(\\\"error\\\");\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "creationDate": 1778166486463,
+          "lastModifiedBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "lastModifiedDate": 1778185218276,
+          "evaluatorVersion": "2.0"
+        },
+        "293ec003-a57c-4220-b2f8-13dc9e7f2673": {
+          "_id": "293ec003-a57c-4220-b2f8-13dc9e7f2673",
+          "name": "Display Number",
+          "description": null,
+          "script": "\"/**\\n * Created by the Ping Identity Technology Alliance Partner (TAP) team\\n *\\n * For support, contact Ping Identity Support\\n * or email: tap-global@pingidentity.com\\n *\\n * Version: 1.5\\n */\\n\\nvar numberMatched = nodeState.get(\\\"numberMatched\\\");\\nif (callbacks.isEmpty()) {\\ncallbacksBuilder.textOutputCallback(0, \\\"Number: \\\" + numberMatched);\\n}\\naction.goTo(\\\"true\\\");\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "creationDate": 1778099932869,
+          "lastModifiedBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "lastModifiedDate": 1778185279542,
+          "evaluatorVersion": "2.0"
+        },
+        "cce3770b-6ad8-4c7b-8460-5250af41a8a2": {
+          "_id": "cce3770b-6ad8-4c7b-8460-5250af41a8a2",
+          "name": "getAccessToken",
+          "description": null,
+          "script": "\"/**\\n * Created by the Ping Identity Technology Alliance Partner (TAP) team\\n *\\n * For support, contact Ping Identity Support\\n * or email: tap-global@pingidentity.com\\n *\\n * Version: 1.5\\n */\\n\\nvar envId = systemEnv.getProperty(\\\"esv.envid\\\");\\nvar clientId = systemEnv.getProperty(\\\"esv.clientid\\\");\\n\\n// Prefer storing this as an ESV secret, not hardcoding it.\\nvar clientSecret = systemEnv.getProperty(\\\"esv.identifier\\\");\\n\\nvar tokenUrl = \\\"https://auth.pingone.com/\\\" + envId + \\\"/as/token\\\";\\nvar basicAuth = utils.base64.encode(clientId.concat(\\\":\\\").concat(clientSecret));\\n\\nvar requestOptions = {\\n  method: \\\"POST\\\",\\n  headers: {\\n    \\\"Authorization\\\": \\\"Basic \\\".concat(basicAuth)\\n  },\\n  form: {\\n    grant_type: \\\"client_credentials\\\"\\n  }\\n};\\n\\nvar response = httpClient.send(tokenUrl, requestOptions).get();\\n\\nif (response && response.status === 200) {\\n  var tokenResponse = response.json();\\n\\n  nodeState.putShared(\\\"pingAccessToken\\\", tokenResponse.access_token);\\n\\n  // Optional: store full token response if needed by later nodes\\n  // nodeState.putShared(\\\"token_response\\\", tokenResponse);\\n\\n  action.goTo(\\\"true\\\");\\n} else {\\n  logger.error(\\\"Token request failed. Status: \\\" + (response ? response.status : \\\"no response\\\"));\\n  action.goTo(\\\"false\\\");\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "creationDate": 1777908045761,
+          "lastModifiedBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "lastModifiedDate": 1778185097297,
+          "evaluatorVersion": "2.0"
+        },
+        "704ba7b3-eeaa-4396-a4c6-da5235b6f3c2": {
+          "_id": "704ba7b3-eeaa-4396-a4c6-da5235b6f3c2",
+          "name": "Initialize Device Authentication",
+          "description": null,
+          "script": "\"/**\\n * Created by the Ping Identity Technology Alliance Partner (TAP) team\\n *\\n * For support, contact Ping Identity Support\\n * or email: tap-global@pingidentity.com\\n *\\n * Version: 1.5\\n */\\n\\nvar envId = systemEnv.getProperty(\\\"esv.envid\\\");\\nvar accessToken = nodeState.get(\\\"pingAccessToken\\\");\\nvar userId = nodeState.get(\\\"pingOneUserId\\\");\\n\\nif (!envId || !accessToken || !userId) {\\n  logger.error(\\\"Missing required input(s): pingOneEnvId, pingOneAccessToken, or pingOneUserId\\\");\\n  action.goTo(\\\"Failure\\\");\\n} else {\\n  var requestUrl = \\\"https://auth.pingone.com/\\\" + envId + \\\"/deviceAuthentications\\\";\\n\\n  var selectedDeviceId = nodeState.get(\\\"selectedDeviceId\\\");\\n\\n    // Base body (always present)\\n    var body = {\\n      user: {\\n        id: userId\\n      }\\n    };\\n    \\n    // Only add device + compatibility if deviceId exists\\n    if (selectedDeviceId) {\\n      body.device = {\\n        id: selectedDeviceId\\n      };\\n      body.compatibility = \\\"FULL\\\";\\n    }\\n    \\n    var requestOptions = {\\n      method: \\\"POST\\\",\\n      headers: {\\n        \\\"Content-Type\\\": \\\"application/json\\\"\\n      },\\n      token: accessToken,\\n      body: body\\n    };\\n\\n  try {\\n    var response = httpClient.send(requestUrl, requestOptions).get();\\n\\n    logger.info(\\\"deviceAuthentications response status: \\\" + response.status);\\n\\n    if (response.status >= 200 && response.status < 300) {\\n      var responseText = response.text();\\n\\n      try {\\n        var json = response.json();\\n\\n\\n        var numberMatched = json && json.numberMatching ? String(json.numberMatching.number) : null;\\n        nodeState.putShared(\\\"numberMatched\\\", numberMatched);\\n\\n        // Extract deviceAuthId (matches your Postman logic)\\n        var deviceAuthId = json && json.id ? String(json.id) : null;\\n\\n        if (deviceAuthId) {\\n\\n          // Save to shared state for downstream nodes\\n          nodeState.putShared(\\\"deviceAuthId\\\", deviceAuthId);\\n\\n          action.goTo(\\\"Success\\\");\\n        } else {\\n          logger.error(\\\"Response JSON did not contain a valid 'id'\\\");\\n          nodeState.putShared(\\\"deviceAuthenticationsError\\\", \\\"Missing id in response\\\");\\n          action.goTo(\\\"Failure\\\");\\n        }\\n\\n      } catch (parseError) {\\n        logger.error(\\\"Failed to parse JSON response: \\\" + parseError);\\n        nodeState.putShared(\\\"deviceAuthenticationsError\\\", \\\"Invalid JSON response\\\");\\n        action.goTo(\\\"Failure\\\");\\n      }\\n\\n    } else {\\n      var errorBody = response.text();\\n      logger.error(\\\"deviceAuthentications call failed. Status: \\\" + response.status + \\\", body: \\\" + errorBody);\\n      nodeState.putShared(\\\"deviceAuthenticationsError\\\", errorBody);\\n      action.goTo(\\\"Failure\\\");\\n    }\\n\\n  } catch (e) {\\n    logger.error(\\\"Exception calling deviceAuthentications endpoint: \\\" + e);\\n    nodeState.putShared(\\\"deviceAuthenticationsError\\\", String(e));\\n    action.goTo(\\\"Failure\\\");\\n  }\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "creationDate": 1777583105629,
+          "lastModifiedBy": "id=2fdc9ef3-2f1e-4e6c-a643-458a8772d04a,ou=user,ou=am-config",
+          "lastModifiedDate": 1778185259160,
+          "evaluatorVersion": "2.0"
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}
