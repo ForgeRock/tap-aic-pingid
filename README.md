@@ -1,18 +1,32 @@
 # PingID Script Descriptions
 
-This README gives a simple description of each script in the PingID/PingOne export.
+This README gives a simple description of each script in the PingID/PingOne export, including the ESVs used by the scripts and the outcomes that must be configured on each scripted decision node.
 
-| Script | Description |
+## Required ESVs
+
+| ESV | Purpose |
 | --- | --- |
-| `getAccessToken` | Requests an OAuth access token from PingOne so the other scripts can call PingOne services. |
-| `Read MFA Devices` | Looks up the user's registered MFA devices and decides whether the user has no devices, one device, or multiple devices. |
-| `Select Device` | Shows the user a list of available MFA devices and saves the device they choose. |
-| `Initialize Device Authentication` | Starts an MFA authentication challenge for the user, including number matching when PingOne returns a number. |
-| `Display Number` | Shows the number-matching value that the user must approve in their authenticator app. |
-| `Read Device Authentication` | Checks the current status of the MFA challenge and continues based on whether it is still pending, completed, or failed. |
-| `Update User MFA Enabled` | Enables MFA for the user in PingOne. |
-| `Create MFA Pairing Key` | Creates a pairing code and QR link so the user can register a new MFA device. |
-| `Check Pairing Status` | Shows the pairing code and QR code, then checks whether the user has completed device registration. |
+| `esv.envid` | PingOne environment ID used when calling PingOne API endpoints. |
+| `esv.clientid` | Client ID used to request the PingOne OAuth access token. |
+| `esv.identifier` | Client secret used to request the PingOne OAuth access token. |
+| `esv.policyid` | PingOne MFA policy ID used when creating a pairing key. |
+| `esv.applicationid` | PingOne application ID used when creating a pairing key. |
+
+## Scripts
+
+| Script | Description | ESVs Needed | Outcomes to Configure |
+| --- | --- | --- | --- |
+| `getAccessToken` | Requests an OAuth access token from PingOne so the other scripts can call PingOne services. | `esv.envid`, `esv.clientid`, `esv.identifier` | `true`, `false` |
+| `Read MFA Devices` | Looks up the user's registered MFA devices and decides whether the user has no devices, one device, or multiple devices. | `esv.envid` | `multipleDevices`, `noDevices`, `error`, `singleDevice` |
+| `Select Device` | Shows the user a list of available MFA devices and saves the device they choose. | None | `selected`, `error` |
+| `Initialize Device Authentication` | Starts an MFA authentication challenge for the user, including number matching when PingOne returns a number. | `esv.envid` | `Success`, `Failure` |
+| `Display Number` | Shows the number-matching value that the user must approve in their authenticator app. | None | `true` |
+| `Read Device Authentication` | Checks the current status of the MFA challenge and continues based on whether it is still pending, completed, or failed. | `esv.envid` | `completed`, `polling`, `error` |
+| `Update User MFA Enabled` | Enables MFA for the user in PingOne. | `esv.envid` | `success`, `error` |
+| `Create MFA Pairing Key` | Creates a pairing code and QR link so the user can register a new MFA device. | `esv.envid`, `esv.policyid`, `esv.applicationid` | `true`, `false` |
+| `Check Pairing Status` | Shows the pairing code and QR code, then checks whether the user has completed device registration. | `esv.envid` | `true` |
+
+> Outcome names are case-sensitive and must match the script exactly.
 
 
 <!-- SUPPORT -->
