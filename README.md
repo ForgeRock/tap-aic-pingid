@@ -1,4 +1,4 @@
-# PingID Scripted Decision Nodes
+# PingID Journey with Scripted Decision Nodes
 
 This README gives a simple description of each script in the PingID/PingOne export, including the ESVs used by the scripts and the outcomes that must be configured on each scripted decision node.
 
