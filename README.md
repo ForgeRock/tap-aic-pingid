@@ -12,6 +12,11 @@ This README gives a simple description of each script in the PingID/PingOne expo
 | `esv.policyid` | PingOne MFA policy ID used when creating a pairing key. |
 | `esv.applicationid` | PingOne application ID used when creating a pairing key. |
 
+
+## PingOne Worker Service setup
+
+https://docs.pingidentity.com/pingoneaic/integrations/pingone-set-up-workers.html#configure-the-service
+
 ## Scripts
 
 | Script | Description | ESVs Needed | Outcomes to Configure |
