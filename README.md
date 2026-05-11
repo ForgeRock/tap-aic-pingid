@@ -1,6 +1,10 @@
 # PingID Journey with Scripted Decision Nodes
 
-These scripts can be used with the Ping Advanced Identity Cloud platform to integrated with the PingID directly via API.
+These scripts can be used with the Ping Advanced Identity Cloud platform to integrated with the PingID directly via API. This defines Ping Identity authentication journeys for MFA enrollment and MFA login using PingOne/PingID.
+
+The first journey, PingOneMFARegistration, handles MFA device registration. It authenticates the user, matches or creates the user in PingOne, then lets them register a factor such as mobile app pairing.
+
+The second journey, PingIDMFAAuthentication, performs login with MFA. It validates the user’s username/password, checks whether the user exists in PingOne, invokes the registration journey if needed, and then completes MFA using available methods such as push notification with number matching.
 
 ## Required ESVs
 
