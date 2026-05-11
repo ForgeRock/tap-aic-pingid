@@ -1,6 +1,6 @@
 # PingID Journey with Scripted Decision Nodes
 
-This README gives a simple description of each script in the PingID/PingOne export, including the ESVs used by the scripts and the outcomes that must be configured on each scripted decision node.
+These scripts can be used with the Ping Advanced Identity Cloud platform to integrated with the PingID directly via API.
 
 ## Required ESVs
 
