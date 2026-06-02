@@ -15,10 +15,7 @@ try {
     var deviceId = nodeState.get("selectedDeviceId");
 
     if (!accessToken || !userId || !envId || !deviceId) {
-        logger.error("Missing required values. accessToken=" + !!accessToken +
-                     ", userId=" + !!userId +
-                     ", envId=" + !!envId +
-                     ", deviceId=" + !!deviceId);
+        logger.error("Missing required values.");
         action.goTo("error");
     } else {
         var requestUrl = "https://api.pingone.com/v1/environments/"
